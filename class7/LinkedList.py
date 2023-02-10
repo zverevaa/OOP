@@ -41,7 +41,7 @@ class LinkedList:
     def first(self):
         return self.head
 
-    def queue(self, node):
+    def enqueue(self, node):
         if self.head is None:
             self.head = node
             return
@@ -52,16 +52,16 @@ class LinkedList:
     def dequeue(self):
         if self.head is None:
             raise Exception("List is empty")
-
+        print(self.head)
         self.head = self.head.next
 
 
 linked_list = LinkedList(["1", "2", "3", "4"])
 print(linked_list)
-linked_list.queue(Node("5"))
-linked_list.queue(Node("6"))
-print(linked_list.first())
+linked_list.enqueue(Node("5"))
+linked_list.enqueue(Node("6"))
 linked_list.dequeue()
 linked_list.dequeue()
 print(linked_list)
 print(linked_list.first())
+
