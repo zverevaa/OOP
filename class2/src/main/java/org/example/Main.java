@@ -30,32 +30,32 @@ public class Main {
          * Immutability with hashmaps
          */
 
-        //Mutable class
-
         Map<String, String> mutableMap = new HashMap<>();
         mutableMap.put("Key1", "Value1");
         mutableMap.put("Key2", "Value2");
 
+
+        //Mutable class
         String string1 = "xyz";
         Mutable mutableObject = new Mutable(mutableMap, string1);
-        System.out.println("\nMap and string before modifying the mutable object");
-        System.out.println(mutableObject);
-        mutableMap.put("Key3", "Value3");
-        mutableObject.setMyString("zyx");
-        System.out.println("\nMap and string after modifying the mutable object");
-        System.out.println(mutableObject);
 
         //Immutable class
-
         String imString = "abc";
-
         Immutable immutableObject = new Immutable(mutableMap, imString);
-        System.out.println("\nMap and string before modifying the immutable object");
-        System.out.println(immutableObject);
-        mutableMap.put("Key4", "Value4");
-        //the object doesn't have a setter, so it can't be changed
-        System.out.println("\nMap and string after modifying the immutable object");
-        System.out.println(immutableObject);
 
+        System.out.println("#########");
+
+        checkImmutability((Object) mutableObject, (HashMap) mutableMap);
+        checkImmutability((Object) immutableObject, (HashMap) mutableMap);
+
+    }
+
+    public static void checkImmutability(Object object, HashMap map) {
+        map.put("TestKey1", "TestValue1");
+        map.put("TestKey2", "TestValue2");
+        if(object instanceof Mutable) {
+            ((Mutable) object).setMyString("zyx");
+        }
+        System.out.println(object);
     }
 }
